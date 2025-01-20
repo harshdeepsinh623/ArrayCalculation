@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Basic Array Calculations</h1>
+
+  <label for="arrayInput">Enter numbers:</label>
+  <input type="text" id="arrayInput">
+  <button onclick="performCalculations()">Calculate</button>
+
+  <h3>Results</h3>
+  <p id="sumResult">Sum: </p>
+  <p id="avgResult">Average: </p>
+  <p id="minResult">Minimum: </p>
+  <p id="maxResult">Maximum: </p>
+
+  <script>
+
+    function performCalculations() {
+      const input = document.getElementById('arrayInput').value;
+      const numbers = input.split(',').map(Number).filter(n => !isNaN(n));
+
+      if (numbers.length === 0) {
+        alert("Please enter valid numbers.");
+        return;
+      }
+
+      const sum = numbers.reduce((a, b) => a + b, 0);
+      const average = sum / numbers.length;
+      const min = Math.min(...numbers);
+      const max = Math.max(...numbers);
+
+      document.getElementById('sumResult').innerText = `Sum: ${sum}`;
+      document.getElementById('avgResult').innerText = `Average: ${average.toFixed(2)}`;
+      document.getElementById('minResult').innerText = `Minimum: ${min}`;
+      document.getElementById('maxResult').innerText = `Maximum: ${max}`;
+    }
+  </script>
+</body>
+</html>
